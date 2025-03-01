@@ -73,11 +73,13 @@ function run() {
             const run_id = process.env.GITHUB_RUN_ID || "";
             const run_number = process.env.GITHUB_RUN_NUMBER || "";
             const run_attempt = process.env.GITHUB_RUN_ATTEMPT || "";
-            const workflow = process.env.GITHUB_WORKFLOW || "";
+            const workflow = process.env.CURRENT_TENANT || "";
+            const environment = process.env.CURRENT_ENVIRONMENT || "";
             const aid = `${github_repos}-${workflow}-${run_id}-${run_number}-${run_attempt}`;
             const runnerOS = process.env.RUNNER_OS || "";
             const actor = process.env.GITHUB_ACTOR || "";
             const tag = process.env.GITHUB_REF_NAME || "";    
+            const currentDate = new Date().toLocaleString();
             const actionsUrl = `${github_server_url}/${github_repos}/actions/runs/${run_id}`;
             const mainMessagePayload = hasPayload(baseMessagePayload)
                 ? baseMessagePayload
@@ -91,8 +93,23 @@ function run() {
                             },
                         },
                         {
+                            "type": "divider"
+                            },                        
+                        {
                             type: "section",
                             fields: [
+                                {
+                                    "type": "mrkdwn",
+                                    "text": `*Date:*\n${currentDate}`
+                                  },                                 
+                                {
+                                    type: "mrkdwn",
+                                    text: `*Tag:*\n${tag}`,
+                                  },  
+                                  {
+                                    type: "mrkdwn",
+                                    text: `*Pipeline:*\n${workflow}-${environment}`,
+                                  },                                                               
                                 {
                                     type: "mrkdwn",
                                     text: `*Author:*\n${actor}`,
@@ -100,27 +117,11 @@ function run() {
                                   {
                                     type: "mrkdwn",
                                     text: `*Repo:*\n${github_server_url}/${github_repos}`,
-                                  },
-                                  {
-                                    type: "mrkdwn",
-                                    text: `*Tag:*\n${tag}`,
-                                  },                
+                                  },              
                                   {
                                     type: "mrkdwn",
                                     text: `*URL:*\n${actionsUrl}`,
-                                  },
-                                  {
-                                    type: "mrkdwn",
-                                    text: `*GITHUB_RUN_ID:*\n${run_id}`,
-                                  },
-                                  {
-                                    type: "mrkdwn",
-                                    text: `*Workflow:*\n${workflow}`,
-                                  },
-                                  {
-                                    type: "mrkdwn",
-                                    text: `*RunnerOS:*\n${runnerOS}`,
-                                  },
+                                  }
                             ],
                         },
                     ],
