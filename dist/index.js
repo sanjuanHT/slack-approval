@@ -196,6 +196,7 @@ function run() {
             core.setOutput("replyMessageTs", replyMessage.ts);
             function cancelHandler() {
                 return __awaiter(this, void 0, void 0, function* () {
+                    console.log(mainMessagePayload)
                     yield web.chat.update(Object.assign({ ts: mainMessage.ts, channel: channel_id }, (hasPayload(failMessagePayload)
                         ? failMessagePayload
                         : mainMessagePayload)));
