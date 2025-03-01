@@ -55,6 +55,7 @@ async function run(): Promise<void> {
     const aid = `${github_repos}-${workflow}-${run_id}-${run_number}-${run_attempt}`;
     const runnerOS = process.env.RUNNER_OS || "";
     const actor = process.env.GITHUB_ACTOR || "";
+    const tag = process.env.GITHUB_REF_NAME || "";    
     const actionsUrl = `${github_server_url}/${github_repos}/actions/runs/${run_id}`;
     const mainMessagePayload = hasPayload(baseMessagePayload)
       ? baseMessagePayload
@@ -72,15 +73,19 @@ async function run(): Promise<void> {
               fields: [
                 {
                   type: "mrkdwn",
-                  text: `*GitHub Actor:*\n${actor}`,
+                  text: `*Author:*\n${actor}`,
                 },
                 {
                   type: "mrkdwn",
-                  text: `*Repos:*\n${github_server_url}/${github_repos}`,
+                  text: `*Repo:*\n${github_server_url}/${github_repos}`,
                 },
                 {
                   type: "mrkdwn",
-                  text: `*Actions URL:*\n${actionsUrl}`,
+                  text: `*Tag:*\n${tag}`,
+                },                
+                {
+                  type: "mrkdwn",
+                  text: `*URL:*\n${actionsUrl}`,
                 },
                 {
                   type: "mrkdwn",
