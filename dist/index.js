@@ -77,6 +77,7 @@ function run() {
             const aid = `${github_repos}-${workflow}-${run_id}-${run_number}-${run_attempt}`;
             const runnerOS = process.env.RUNNER_OS || "";
             const actor = process.env.GITHUB_ACTOR || "";
+            const tag = process.env.GITHUB_REF_NAME || "";    
             const actionsUrl = `${github_server_url}/${github_repos}/actions/runs/${run_id}`;
             const mainMessagePayload = hasPayload(baseMessagePayload)
                 ? baseMessagePayload
