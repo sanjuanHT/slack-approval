@@ -96,11 +96,11 @@ function run() {
                             "type": "divider"
                             },                        
                         {
-                            type: "section",
-                            fields: [
+                            type: "context",
+                            elements: [
                                 {
                                     "type": "mrkdwn",
-                                    "text": `*Date:*\n${currentDate}`
+                                    "text": `*Date:*\n${currentDate} UTC`
                                   },                                 
                                 {
                                     type: "mrkdwn",
