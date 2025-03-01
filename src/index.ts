@@ -168,7 +168,7 @@ async function run(): Promise<void> {
 
       return "approved";
     }
-
+    console.log(mainMessagePayload)
     const mainMessage = baseMessageTs
       ? await web.chat.update({
           channel: channel_id,
