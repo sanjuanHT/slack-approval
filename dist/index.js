@@ -78,8 +78,9 @@ function run() {
             const aid = `${github_repos}-${workflow}-${run_id}-${run_number}-${run_attempt}`;
             const runnerOS = process.env.RUNNER_OS || "";
             const actor = process.env.GITHUB_ACTOR || "";
-            const tag = process.env.GITHUB_REF_NAME || "";    
+            const tag = process.env.GITHUB_REF_NAME || "N/A";    
             const currentDate = new Date().toLocaleString();
+            const customMessage = process.env.CUSTOM_MESSAGE || "";
             const actionsUrl = `${github_server_url}/${github_repos}/actions/runs/${run_id}`;
             const mainMessagePayload = hasPayload(baseMessagePayload)
                 ? baseMessagePayload
@@ -89,7 +90,7 @@ function run() {
                             type: "section",
                             text: {
                                 type: "mrkdwn",
-                                text: "GitHub Actions Approval Request",
+                                text: `${workflow} -Github Actions`,
                             },
                         },
                         {
@@ -113,11 +114,11 @@ function run() {
                                 {
                                     type: "mrkdwn",
                                     text: `*Author:*\n${actor}`,
-                                  },
+                                  }, 
                                   {
                                     type: "mrkdwn",
-                                    text: `*Repo:*\n${github_server_url}/${github_repos}`,
-                                  },              
+                                    text: `*Info:*\n${customMessage}`,
+                                  },                                             
                                   {
                                     type: "mrkdwn",
                                     text: `*URL:*\n${actionsUrl}`,
