@@ -94,28 +94,32 @@ function run() {
                             fields: [
                                 {
                                     type: "mrkdwn",
-                                    text: `*GitHub Actor:*\n${actor}`,
-                                },
-                                {
+                                    text: `*Author:*\n${actor}`,
+                                  },
+                                  {
                                     type: "mrkdwn",
-                                    text: `*Repos:*\n${github_server_url}/${github_repos}`,
-                                },
-                                {
+                                    text: `*Repo:*\n${github_server_url}/${github_repos}`,
+                                  },
+                                  {
                                     type: "mrkdwn",
-                                    text: `*Actions URL:*\n${actionsUrl}`,
-                                },
-                                {
+                                    text: `*Tag:*\n${tag}`,
+                                  },                
+                                  {
+                                    type: "mrkdwn",
+                                    text: `*URL:*\n${actionsUrl}`,
+                                  },
+                                  {
                                     type: "mrkdwn",
                                     text: `*GITHUB_RUN_ID:*\n${run_id}`,
-                                },
-                                {
+                                  },
+                                  {
                                     type: "mrkdwn",
                                     text: `*Workflow:*\n${workflow}`,
-                                },
-                                {
+                                  },
+                                  {
                                     type: "mrkdwn",
                                     text: `*RunnerOS:*\n${runnerOS}`,
-                                },
+                                  },
                             ],
                         },
                     ],
